@@ -6,22 +6,16 @@ DATABRICKS_SERVER_HOSTNAME = 'adb-3886069633353933.13.azuredatabricks.net'
 DATABRICKS_HTTP_PATH = 'sql/protocolv1/o/3886069633353933/0326-204742-af1fo56f' 
 DATABRICKS_TOKEN = 'dapi336a1f512f4ad37295d9d859227a8ebb-3'
 
-def querydb(query="SELECT color, avg(price) AS price FROM diamonds GROUP BY color ORDER BY color"):
-    # with sql.connect(
-    #     server_hostname=os.getenv("DATABRICKS_SERVER_HOSTNAME"),
-    #     http_path=os.getenv("DATABRICKS_HTTP_PATH"),
-    #     access_token=os.getenv("DATABRICKS_TOKEN"),
-    # ) as connection:
+def query(k):
+    query="SELECT * FROM samples.nyctaxi.trips LIMIT {}".format(k)
     with sql.connect(
         server_hostname=DATABRICKS_SERVER_HOSTNAME,
         http_path=DATABRICKS_HTTP_PATH,
         access_token=DATABRICKS_TOKEN,
     ) as connection:
-
         with connection.cursor() as cursor:
             cursor.execute(query)
             result = cursor.fetchall()
-
         for row in result:
             print(row)
 
