@@ -13,9 +13,9 @@ def querydb(query="SELECT color, avg(price) AS price FROM diamonds GROUP BY colo
     #     access_token=os.getenv("DATABRICKS_TOKEN"),
     # ) as connection:
     with sql.connect(
-        server_hostname="DATABRICKS_SERVER_HOSTNAME",
-        http_path="DATABRICKS_HTTP_PATH",
-        access_token="DATABRICKS_TOKEN",
+        server_hostname=DATABRICKS_SERVER_HOSTNAME,
+        http_path=DATABRICKS_HTTP_PATH,
+        access_token=DATABRICKS_TOKEN,
     ) as connection:
 
         with connection.cursor() as cursor:
