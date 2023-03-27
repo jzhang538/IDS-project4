@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from libs.querydatabricks import query
+from libs.querydatabricks import querymydb
 import uvicorn
+
+app = FastAPI()
 
 @app.get("/")
 async def root():
@@ -8,9 +10,8 @@ async def root():
 
 @app.get("/query/{k}")
 async def query(k):
-    result = querydb(k)
+    result = querymydb(k=k)
     return {"result": result}
 
 if __name__ == "__main__":
-    app = FastAPI()
     uvicorn.run(app, port=8080, host="0.0.0.0")
