@@ -44,6 +44,6 @@ def querymydb(k):
             pairs = []
             for j in range(edges.shape[1]):
                 if edges[i][j]!=0:
-                    pairs.append([idx2zip[j], edges[i][j]])
+                    pairs.append([idx2zip[j]])
             edge_dict[idx2zip[i]] = pairs
     return edge_dict
